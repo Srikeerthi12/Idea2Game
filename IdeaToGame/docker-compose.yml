@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+
+  # ── ChromaDB vector store ────────────────────────────────────────
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    networks:
+      - ideatogame
+
+  # ── n8n workflow automation ──────────────────────────────────────
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+    networks:
+      - ideatogame
+    restart: unless-stopped
+
+  # ── FastAPI backend (Phase 4 — uncomment when ready) ─────────────
+  # api:
+  #   build: ./api
+  #   ports:
+  #     - "8000:8000"
+  #   env_file: .env
+  #   depends_on:
+  #     - chromadb
+  #   networks:
+  #     - ideatogame
+
+networks:
+  ideatogame:
+    driver: bridge
+
+volumes:
+  chroma_data:
+  n8n_data:

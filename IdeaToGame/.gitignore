@@ -1,0 +1,42 @@
+# ── Secrets (NEVER commit these) ─────────────────────────────────
+.env
+
+# ── Python cache ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ── Virtual environments ──────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Generated game files ──────────────────────────────────────────
+# Ignore any .py files generated at the root of IdeaToGame/
+# (e.g. main.py, spaceship.py, snake.py, vampire2.py, etc.)
+# Keep: generate_game.py, and everything inside examples/
+/*.py
+!generate_game.py
+
+# ── Phase 2: ChromaDB local vector store ─────────────────────────
+# This is auto-generated on first run — large binary files, no need in git
+chroma_db/
+
+# ── Phase 2: Supabase / DB ───────────────────────────────────────
+# schema.sql is intentionally tracked (it's setup instructions)
+# Nothing else to ignore here
+
+# ── Logs & temp files ────────────────────────────────────────────
+*.log
+*.tmp
+
+# ── IDE / editor ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ── OS ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

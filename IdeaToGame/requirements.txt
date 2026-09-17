@@ -1,0 +1,16 @@
+langchain
+langchain-openai
+langgraph
+pydantic
+
+chromadb
+supabase
+
+langsmith
+
+fastapi
+uvicorn[standard]
+
+openai
+nest_asyncio
+pygame
